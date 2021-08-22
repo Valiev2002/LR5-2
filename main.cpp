@@ -9,7 +9,7 @@ int main() {
    std::cout<<"Pop front: "<<std::endl;
 lab.pop_front();
 std::cout<<"Push back: "<<std::endl;
-lab.push_back(lab,3);
+lab.push_back(lab, 3);
 std::cout<<"Size: "<<std::endl;
 lab.size();
 std::cout<<"Begin iterator: "<<std::endl;
