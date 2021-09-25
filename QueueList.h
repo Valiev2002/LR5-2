@@ -2,35 +2,30 @@
 #include <iterator>
 #include <iostream>
 #include <memory>
-template<class T>
-class QueueList;
-
-template<class T>
-std::ostream &operator<<(std::ostream &out, const QueueList<T> &ql) {
-    for (auto *node = ql.first; node != nullptr; node = node->next) {
-        out << node->value << " ";
-    }
-
-    return out;
-}
-
-template<class T>
 class QueueList {
+    public:
+    using iterator_category = std::forward_iterator_tag;
+    using value_type = int;
+    using difference_type = int;
+    using pointer = int*;
+    using reference = int&;
+
     struct node {
         node *next;
-        T value;
+        int value;
     };
 private:
     node *first;
     node *last;
-    friend std::ostream &operator
-    <<<T>(
-    std::ostream &out,
-    const QueueList &ql
-    );
+    friend std::ostream &operator<<(std::ostream &out, const QueueList &ql) {
+        for (auto *node = ql.first; node != nullptr; node = node->next) {
+            out << node->value << " ";
+        }
+        return out;
+    }
     int size_;
 public:
-    class QueueList_iterator : public std::iterator<std::forward_iterator_tag, T> {
+    class QueueList_iterator {
         node *_pos;
     public:
         explicit QueueList_iterator(node *pos) : _pos(pos) {}
@@ -53,11 +48,11 @@ public:
             return temp;
         }
 
-        T operator*() const { return _pos->value; }
+        int operator*() const { return _pos->value; }
 
-        T &operator*() { return _pos->value; }
+        int &operator*() { return _pos->value; }
 
-        T *operator->() { return _pos; }
+        node * operator->() { return _pos; }
 
         bool operator==(const QueueList_iterator &rhs) const { return _pos == rhs._pos; }
 
@@ -80,9 +75,9 @@ public:
 
     ~QueueList() { clear(); }
 
-    T front() const { return first->value; }
+    int front() const { return first->value; }
 
-    T back() const { return last->value; }
+    int back() const { return last->value; }
 
     bool empty() const { return first == nullptr; }
 
@@ -93,14 +88,16 @@ public:
             node *temp = first;
             first = first->next;
             delete temp;
+            --size_;
         }
-        if (first == nullptr) {
+
+        else {
             last = nullptr;
+            std::cout<<"QueueList is empty"<<std::endl;
         }
-        --size_;
     }
 
-    void push_back(const T &value) {
+    void push_back(const int &value) {
         node *element = new node{nullptr, value};
         if (empty()) {
             first = element;
@@ -118,8 +115,7 @@ public:
     }
 };
 
-template<class T>
-void print(const QueueList<T> &lab) {
+void print(const QueueList&lab) {
     for (const auto &e: lab) {
         std::cout << e << " <- ";
     }

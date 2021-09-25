@@ -5,7 +5,7 @@
 
 
 int main() {
-    QueueList<int> lab;
+    QueueList lab;
 
     std::cout << "Push back:" << " ";
 
@@ -22,7 +22,7 @@ int main() {
     std::cout<<"Print with range based for loop "<<std::endl;
     print(lab);
 
-std::cout << "Let's check the number of even digits:"<<' ';
+    std::cout << "Let's check the number of even digits:"<<' ';
     auto gg =std::count_if(lab.begin(),lab.end(),[](int i){return i % 2 == 0 ;});
     if(gg){
         std::cout<<gg<<std::endl;
@@ -45,9 +45,9 @@ std::cout << "Let's check the number of even digits:"<<' ';
     auto smallest = std::min_element(lab.begin(),lab.end());
     std::cout << "Min element is " << *smallest<<std::endl;
 
-int m;
-std::cout <<" Please enter digit "<<std::endl;
-std::cin>>m;
+    int m;
+    std::cout <<" Please enter digit "<<std::endl;
+    std::cin>>m;
     std::for_each(lab.begin(), lab.end(), [m](int &n){  if (n > m) n += 10;});
     print(lab);
 
@@ -79,6 +79,3 @@ std::cin>>m;
 
     return 0;
 }
-
-
-
