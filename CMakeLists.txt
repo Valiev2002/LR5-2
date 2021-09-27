@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 project(LR5_2)
-include_directories(.)
+
 set(CMAKE_CXX_STANDARD 14)
-add_executable(LR5_2 main.cpp)
+
+add_executable(LR5_2 main.cpp  QueueList.h )

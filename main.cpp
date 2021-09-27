@@ -29,8 +29,8 @@ int main() {
     }
 
 
-
-    /*int b;
+/*
+    int b;
     std::cout<<"Please,enter your digit"<<std::endl;
      std::cin>>b;
      auto result=std::find(lab.begin(),lab.end(),b);

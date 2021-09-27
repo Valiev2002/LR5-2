@@ -3,13 +3,7 @@
 #include <iostream>
 #include <memory>
 class QueueList {
-    public:
-    using iterator_category = std::forward_iterator_tag;
-    using value_type = int;
-    using difference_type = int;
-    using pointer = int*;
-    using reference = int&;
-
+public:
     struct node {
         node *next;
         int value;
@@ -28,6 +22,12 @@ public:
     class QueueList_iterator {
         node *_pos;
     public:
+        using iterator_category = std::forward_iterator_tag;
+        using value_type = int;
+        using difference_type = int;
+        using pointer = int*;
+        using reference = int&;
+
         explicit QueueList_iterator(node *pos) : _pos(pos) {}
 
         ~QueueList_iterator() = default;
@@ -48,15 +48,14 @@ public:
             return temp;
         }
 
-        int operator*() const { return _pos->value; }
+        difference_type operator*() const { return _pos->value; }
 
-        int &operator*() { return _pos->value; }
+        reference operator*() { return _pos->value; }
+        node* operator->() { return _pos; }
 
-        node * operator->() { return _pos; }
+        bool operator==(const QueueList_iterator &other) const { return _pos == other._pos; }
 
-        bool operator==(const QueueList_iterator &rhs) const { return _pos == rhs._pos; }
-
-        bool operator!=(const QueueList_iterator &rhs) const { return _pos != rhs._pos; }
+        bool operator!=(const QueueList_iterator &other) const { return _pos != other._pos; }
     };
 
     const QueueList_iterator begin() const { return QueueList_iterator(first); };
